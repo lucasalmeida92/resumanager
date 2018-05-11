@@ -1,0 +1,11 @@
+.PageContent {
+  min-height: calc(100vh - 50px);
+
+  &__wrapper {
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+  }
+}

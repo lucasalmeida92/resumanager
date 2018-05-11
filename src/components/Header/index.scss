@@ -1,0 +1,30 @@
+.Header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2d98da;
+  height: 60px;
+  width: 100vw;
+  overflow: hidden;
+  padding: 10px 20px;
+  color: white;
+
+  &__title {
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+}
+
+@media(max-width: 520px) {
+  .Header {
+    height: 130px;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+
+    &__title {
+      font-size: 1.2em;
+    }
+  }
+}
