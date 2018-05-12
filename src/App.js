@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import PageContent from './components/PageContent';
+import ResumesPage from './containers/ResumesPage';
+import CreateResumePage from './containers/CreateResumePage';
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header />
-        <PageContent>
-          <p>
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
-        </PageContent>
-      </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <PageContent>
+            <Switch>
+              <Route exact path="/" component={ResumesPage} />
+              <Route exact path="/resumes" component={ResumesPage} />
+              <Route exact path="/create-resume" component={CreateResumePage} />
+            </Switch>
+          </PageContent>
+        </div>
+      </Router>
     );
   }
 }
