@@ -117,13 +117,22 @@
   &__info {
     position: relative;
     font-size: 15px;
-    padding-left: 25px;
     margin-bottom: 7px;
     color: #4b6584;
 
-    .fa {
-      position: absolute;
-      left: 0;
+    &--icon {
+      padding-left: 22px;
+
+      .fa {
+        position: absolute;
+        left: 0;
+        opacity: .7;
+      }
+    }
+
+    &--big {
+      font-size: 16px;
+      font-weight: 600;
     }
   }
 
@@ -132,6 +141,7 @@
     max-height: 27px;
     margin-top: -15px;
     padding: 0 20px;
+    border-radius: 0 0 5px 5px;
     transition: all 200ms ease-out;
 
     &--open {
@@ -182,6 +192,7 @@
   &__session-item {
     background: rgba(255,255,255,.6);
     padding: 10px;
+    margin-bottom: 5px;
     border-radius: 5px;
   }
 

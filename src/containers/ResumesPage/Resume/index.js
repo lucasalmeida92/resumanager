@@ -20,6 +20,35 @@ class Resume extends Component {
     })
   }
 
+  _getProfessionalExperiences(professionalExperiences) {
+    return professionalExperiences.map((exp, index) => {
+      const startDate = moment(exp.startDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
+      const endDate = moment(exp.endDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
+      return (
+        <div key={index} className="Resume__session-item">
+            <p className="Resume__info Resume__info--big">{exp.companyName}</p>
+            <p className="Resume__info Resume__info--icon"><FA name="user-circle" /> {exp.role}</p>
+            <p className="Resume__info Resume__info--icon"><FA name="calendar" /> {startDate} - {endDate}</p>
+          </div>
+      )
+    });
+  }
+
+  _getFormations(formations) {
+    return formations.map((formation, index) => {
+      const startDate = moment(formation.startDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
+      const endDate = moment(formation.endDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
+      return (
+        <div key={index} className="Resume__session-item">
+            <p className="Resume__info Resume__info--big">{formation.institution}</p>
+            <p className="Resume__info Resume__info--icon"><FA name="graduation-cap" /> {formation.course}</p>
+            <p className="Resume__info Resume__info--icon"><FA name="check-square" /> Is concluded: {formation.isConcluded ? 'YES' : 'NO'}</p>
+            <p className="Resume__info Resume__info--icon"><FA name="calendar" /> {startDate} - {endDate}</p>
+          </div>
+      )
+    });
+  }
+
   render() {
     let resume = this.props.resume;
     const birthDate = moment(resume.birthDate.replace(' ',''), moment.ISO_8601).format('DD/MM/YYYY');
@@ -54,15 +83,15 @@ class Resume extends Component {
             <div className="Resume__tags">
               {tags}
             </div>
-            <p className="Resume__info">
+            <p className="Resume__info Resume__info--icon">
               <FA name="map-marker" />
               {resume.address}
             </p>
-            <p className="Resume__info">
+            <p className="Resume__info Resume__info--icon">
               <FA name="envelope" />
               {resume.email}
             </p>
-            <p className="Resume__info">
+            <p className="Resume__info Resume__info--icon">
               <FA name="phone" />
               {resume.phone}
             </p>
@@ -71,13 +100,26 @@ class Resume extends Component {
 
         {/* TO DO: Make a more info component */}
         <div className={`Resume__more-info ${this.state.isMoreInfoOpen && 'Resume__more-info--open'}`}>
-          <button className="Resume__more-button" onClick={this._toggleMoreInfo}>see more <FA name="plus" /></button>
+          <button className="Resume__more-button" onClick={this._toggleMoreInfo}>
+            {this.state.isMoreInfoOpen ? 'see less ' : 'see more '}
+            {
+              this.state.isMoreInfoOpen
+                ? (<FA name="minus" />)
+                : (<FA name="plus" />)
+            }
+          </button>
           <h3 className="Resume__session-title">Professional Experiences</h3>
-          <div className="Resume__session-item">
-            <p className="Resume__info">minim</p>
-            <p className="Resume__info"><FA name="user-circle" /> minim</p>
-            <p className="Resume__info"><FA name="calendar" /> Feb/2017 - Oct/2018</p>
-          </div>
+          {
+            this._getProfessionalExperiences(resume.professionalExperiences)
+            ? this._getProfessionalExperiences(resume.professionalExperiences)
+            : '-'
+          }
+          <h3 className="Resume__session-title">Formations</h3>
+          {
+            this._getFormations(resume.formations)
+            ? this._getFormations(resume.formations)
+            : '-'
+          }
         </div>
 
       </div>
