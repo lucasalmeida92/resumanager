@@ -29,7 +29,7 @@
 
   &__gender {
     position: absolute;
-    left: 10px;
+    left: calc(50% - 50px);
     top: 110px;
     background-color: #778ca3;
     color: #fff;
@@ -51,7 +51,7 @@
 
   &__age {
     position: absolute;
-    right: 10px;
+    left: calc(50% - 25px);
     top: 110px;
     background-color: #4b6584;
     color: #fff;
@@ -107,5 +107,25 @@
 
   &:hover {
     box-shadow: 0 0 15px 0 rgba(#778ca3, .5);
+  }
+}
+
+@media(max-width: 520px) {
+  .Resume {
+
+    &__summary {
+      flex-wrap: wrap;
+    }
+
+    &__profile {
+      text-align: center;
+      width: 100%;
+    }
+
+    &__name,
+    &__created-at,
+    &__tags {
+      text-align: center;
+    }
   }
 }

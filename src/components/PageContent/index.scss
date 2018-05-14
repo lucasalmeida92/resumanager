@@ -10,3 +10,11 @@
     margin: 0 auto;
   }
 }
+
+@media(max-width: 520px) {
+  .PageContent {
+    &__wrapper {
+      padding: 10px;
+    }
+  }
+}
