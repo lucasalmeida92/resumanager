@@ -1,0 +1,111 @@
+.Resume {
+  overflow: hidden;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 0 rgba(#d1d8e0, 0.4);
+  transition: all 200ms ease-out;
+
+  &__summary {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__profile {
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    width: 120px;
+    height: 144px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin: 10px;
+      border-radius: 6px 6px 0 0;
+    }
+  }
+
+  &__gender {
+    position: absolute;
+    left: 10px;
+    top: 110px;
+    background-color: #778ca3;
+    color: #fff;
+    width: 25px;
+    display: flex;
+    height: 23px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 0 7px;
+
+    &--male {
+      background-color: #2d98da;
+    }
+
+    &--female {
+      background-color: #8854d0;
+    }
+  }
+
+  &__age {
+    position: absolute;
+    right: 10px;
+    top: 110px;
+    background-color: #4b6584;
+    color: #fff;
+    width: 75px;
+    display: flex;
+    height: 23px;
+    font-size: 13px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 7px 0;
+  }
+
+  &__basic-info {
+    flex-grow: 1;
+    padding: 10px;
+  }
+
+  &__created-at {
+    font-size: 13px;
+    color: #778ca3;
+    margin-bottom: 7px;
+  }
+
+  &__name {
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: 3px 9px;
+    background-color: #a5b1c2;
+    color: #fff;
+    font-size: 13px;
+    margin-right: 3px;
+    margin-bottom: 7px;
+    border-radius: 10px;
+  }
+
+  &__info {
+    position: relative;
+    font-size: 15px;
+    padding-left: 25px;
+    margin-bottom: 7px;
+    color: #4b6584;
+
+    .fa {
+      position: absolute;
+      left: 0;
+    }
+  }
+
+  &:hover {
+    box-shadow: 0 0 15px 0 rgba(#778ca3, .5);
+  }
+}

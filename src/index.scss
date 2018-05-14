@@ -49,12 +49,22 @@ table {
 
 /* -- GENERAL -- */
 
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
+  color: #2a394a;
 }
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
 a {
   text-decoration: none;
   color: #2d98da;
