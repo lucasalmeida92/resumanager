@@ -6,6 +6,18 @@ import moment from 'moment';
 class Resume extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isMoreInfoOpen: false,
+    }
+    this._toggleMoreInfo = this._toggleMoreInfo.bind(this);
+  }
+
+  _toggleMoreInfo(e) {
+    e.preventDefault();
+    console.log(this.state.isMoreInfoOpen);
+    this.setState({
+      isMoreInfoOpen: !this.state.isMoreInfoOpen
+    })
   }
 
   render() {
@@ -23,17 +35,21 @@ class Resume extends Component {
     return (
       <div className="Resume">
 
-        <div className="Resume__summary">
+        <span className="Resume__score">{resume.score}</span>
 
+        <div className="Resume__summary">
           <div className="Resume__profile">
             <img src={resume.picture} alt={resume.name} />
             {/* <img src="http://i30.tinypic.com/15for9t.jpg" alt={resume.name} /> */}
             <span className={`Resume__gender Resume__gender--${resume.gender}`}>{genderLetter}</span>
-            <span className="Resume__age">{age} anos</span>
+            <span className="Resume__age">{age} years</span>
           </div>
 
           <div className="Resume__basic-info">
-            <p className="Resume__created-at">{createdAt}</p>
+            <p className="Resume__created-at">
+              <small>Created at: </small>
+              {createdAt}
+            </p>
             <h2 className="Resume__name">{resume.name}</h2>
             <div className="Resume__tags">
               {tags}
@@ -53,7 +69,15 @@ class Resume extends Component {
           </div>
         </div>
 
-        <div className="Resume__more-info">
+        {/* TO DO: Make a more info component */}
+        <div className={`Resume__more-info ${this.state.isMoreInfoOpen && 'Resume__more-info--open'}`}>
+          <button className="Resume__more-button" onClick={this._toggleMoreInfo}>see more <FA name="plus" /></button>
+          <h3 className="Resume__session-title">Professional Experiences</h3>
+          <div className="Resume__session-item">
+            <p className="Resume__info">minim</p>
+            <p className="Resume__info"><FA name="user-circle" /> minim</p>
+            <p className="Resume__info"><FA name="calendar" /> Feb/2017 - Oct/2018</p>
+          </div>
         </div>
 
       </div>

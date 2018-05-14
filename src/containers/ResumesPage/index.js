@@ -13,11 +13,16 @@ class ResumesPage extends Component {
     };
   }
 
+  _getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   componentDidMount() {
     const resumesUrl = '/resumes.json';
     request(resumesUrl)
       .then(json => {
         let resumes = json.map(resume => {
+          resume.score = this._getRandomInt(0,100);
           return(
             <Resume key={resume._id} resume={resume} />
           )

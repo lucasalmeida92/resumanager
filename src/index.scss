@@ -79,6 +79,10 @@ a {
   }
 }
 
+button {
+  transition: all 100ms ease-out;
+}
+
 @media(max-width: 520px) {
   body {
     font-size: 14px;
