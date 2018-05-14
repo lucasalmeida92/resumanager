@@ -21,12 +21,17 @@ class ResumesPage extends Component {
     const resumesUrl = '/resumes.json';
     request(resumesUrl)
       .then(json => {
-        let resumes = json.map(resume => {
-          resume.score = this._getRandomInt(0,100);
-          return(
-            <Resume key={resume._id} resume={resume} />
-          )
-        });
+        let resumes = [...json]
+          .map(resume => {
+            resume.score = this._getRandomInt(0,100);
+            return resume;
+          })
+          .sort((a,b) => b.score - a.score)
+          .map((resume, index) => {
+            return(
+              <Resume key={index} resume={resume} />
+            )
+          });
         setTimeout(() => {
           this.setState({resumes: resumes});
         }, 2000);

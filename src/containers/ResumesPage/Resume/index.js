@@ -14,7 +14,6 @@ class Resume extends Component {
 
   _toggleMoreInfo(e) {
     e.preventDefault();
-    console.log(this.state.isMoreInfoOpen);
     this.setState({
       isMoreInfoOpen: !this.state.isMoreInfoOpen
     })
@@ -99,7 +98,7 @@ class Resume extends Component {
         </div>
 
         {/* TO DO: Make a more info component */}
-        <div className={`Resume__more-info ${this.state.isMoreInfoOpen && 'Resume__more-info--open'}`}>
+        <div className={`Resume__more-info ${this.state.isMoreInfoOpen ? 'Resume__more-info--open' : ''}`}>
           <button className="Resume__more-button" onClick={this._toggleMoreInfo}>
             {this.state.isMoreInfoOpen ? 'see less ' : 'see more '}
             {

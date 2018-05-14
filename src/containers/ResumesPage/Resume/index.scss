@@ -138,8 +138,7 @@
 
   &__more-info {
     overflow: hidden;
-    max-height: 27px;
-    margin-top: -15px;
+    max-height: 13px;
     padding: 0 20px;
     border-radius: 0 0 5px 5px;
     transition: all 200ms ease-out;
@@ -148,17 +147,22 @@
       max-height: 400px;
       overflow-y: auto;
       background-color: #e3ebf3;
-      padding: 10px 20px 20px 20px;
+      padding: 20px;
       margin-top: 0;
       box-sizing: border-box;
 
       .Resume__more-button {
         opacity: 1;
+        margin-top: -20px;
+        line-height: 36px;
+        background: rgba(#e3ebf4, 0.7);
       }
     }
   }
 
   &__more-button {
+    position: absolute;
+    margin-top: -17px;
     cursor: pointer;
     outline: none;
     opacity: 0.7;
@@ -167,7 +171,8 @@
     background: transparent;
     color: #4b6483;
     font-size: 13px;
-    height: 23px;
+    line-height: 27px;
+    left: 0;
 
     .fa {
       position: relative;
