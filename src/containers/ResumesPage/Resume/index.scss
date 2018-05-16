@@ -152,9 +152,10 @@
       box-sizing: border-box;
 
       .Resume__more-button {
+        z-index: 9;
         opacity: 1;
         margin-top: -20px;
-        line-height: 36px;
+        line-height: 33px;
         background: rgba(#e3ebf4, 0.7);
       }
     }

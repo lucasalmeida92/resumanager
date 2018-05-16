@@ -1,0 +1,80 @@
+.CreateForm {
+  &__submit-button {
+    text-align: center;
+
+    input[type=submit] {
+      width: 180px;
+    }
+  }
+
+  &__selectedPicture {
+    text-align: center;
+    margin-bottom: 30px;
+
+    img {
+      display: inline-block;
+      max-width: 100px;
+      border-radius: 5px;
+      object-fit: cover;
+      border: 6px solid #d1d8e0;
+    }
+  }
+
+  &__upload {
+    &-label {
+      cursor: pointer;
+    }
+
+    &-input {
+      display: none;
+    }
+
+    &-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      color: #778ca3;
+      font-size: 16px;
+
+      .fa {
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        margin: 5px 10px;
+        line-height: 40px;
+        font-size: 18px;
+        border-radius: 50px;
+        background-color: #778ca3;
+        color: #fff;
+      }
+
+      &:hover {
+        color: #4b6584;
+
+        .fa {
+          background-color: #4b6584;
+        }
+      }
+
+      &:active {
+        transform: scale(.98);
+      }
+    }
+  }
+
+  &__sub-form {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+    margin: 5px 0 15px 0;
+  }
+
+  &__isConcludedLabel {
+    align-items: center;
+
+    select {
+      margin-left: 10px;
+    }
+  }
+}

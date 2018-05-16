@@ -79,12 +79,137 @@ a {
   }
 }
 
-button {
-  transition: all 100ms ease-out;
+.box {
+  position: relative;
+  padding: 25px 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px 0 rgba(#d1d8e0, 0.4);
 }
 
 @media(max-width: 520px) {
   body {
     font-size: 14px;
+  }
+}
+
+/* -- FORM -- */
+label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+input,
+select {
+  display: block;
+  margin: 5px 5px 10px 0;
+  outline: none;
+  color: #2a394a;
+}
+
+select {
+  height: 42px;
+}
+
+input[type=text],
+input[type=email],
+input[type=tel],
+select {
+  box-sizing: border-box;
+  width: 100%;
+  height: 42px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 17px;
+  border: 1px solid #d1d8e0;
+  background-color: #fff;
+  outline: none;
+
+  &:focus {
+    border-color: #778ca3;
+  }
+}
+
+.button,
+input[type=submit] {
+  display: inline-block;
+  line-height: 30px;
+  padding: 10px;
+  height: 50px;
+  min-width: 100px;
+  border: none;
+  font-size: 17px;
+  background-color: #0fb9b1;
+  color: #fff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2bcbba;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.button {
+  &--small {
+    line-height: 16px;
+    height: 36px;
+    font-size: 15px;
+  }
+}
+
+/* -- GRID -- */
+.row {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.col {
+  overflow: hidden;
+  flex-basis: 100%;
+
+  &--50 {
+    flex-basis: calc(50% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 50%;
+    }
+  }
+
+  &--33 {
+    flex-basis: calc(33.33% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 33%;
+    }
+  }
+
+  &--25 {
+    flex-basis: calc(25% - 10px);
+    margin-right: 10px;
+    &:last-child {
+      flex-basis: 25%;
+    }
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@media(max-width: 520px) {
+  .col {
+    &--50,
+    &--33,
+    &--25 {
+      flex-basis: 100% !important;
+      margin-right: 0;
+    }
   }
 }
