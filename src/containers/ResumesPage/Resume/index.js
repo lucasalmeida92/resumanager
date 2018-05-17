@@ -20,6 +20,7 @@ class Resume extends Component {
   }
 
   _getProfessionalExperiences(professionalExperiences) {
+    if(!professionalExperiences) return false;
     return professionalExperiences.map((exp, index) => {
       const startDate = moment(exp.startDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
       const endDate = moment(exp.endDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
@@ -34,6 +35,7 @@ class Resume extends Component {
   }
 
   _getFormations(formations) {
+    if(!formations) return false;
     return formations.map((formation, index) => {
       const startDate = moment(formation.startDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
       const endDate = moment(formation.endDate.replace(' ',''), moment.ISO_8601).format('MMM/YYYY');
@@ -50,11 +52,11 @@ class Resume extends Component {
 
   render() {
     let resume = this.props.resume;
-    const birthDate = moment(resume.birthDate.replace(' ',''), moment.ISO_8601).format('DD/MM/YYYY');
-    const age = parseInt(moment().format('YYYY')) - parseInt(moment(birthDate, 'DD/MM/YYYY').format('YYYY'));
-    const createdAt = moment(resume.createdAt.replace(' ',''), moment.ISO_8601).format('DD/MM/YYYY');
+    const birthDate = resume.birthDate && moment(resume.birthDate.replace(' ',''), moment.ISO_8601).format('DD/MM/YYYY');
+    const age = birthDate && parseInt(moment().format('YYYY')) - parseInt(moment(birthDate, 'DD/MM/YYYY').format('YYYY'));
+    const createdAt = resume.createdAt && moment(resume.createdAt.replace(' ',''), moment.ISO_8601).format('DD/MM/YYYY');
     const genderLetter = resume.gender === 'male' ? 'M': 'F';
-    let tags = resume.tags.map((tag, index) => {
+    let tags = resume.tags && resume.tags.map((tag, index) => {
       return (
         <span key={index} className="Resume__tag">{tag}</span>
       )
@@ -67,32 +69,32 @@ class Resume extends Component {
 
         <div className="Resume__summary">
           <div className="Resume__profile">
-            <img src={resume.picture} alt={resume.name} />
+            <img src={resume.picture ? resume.picture : 'http://placehold.it/128x128'} alt={resume.name} />
             {/* <img src="http://i30.tinypic.com/15for9t.jpg" alt={resume.name} /> */}
             <span className={`Resume__gender Resume__gender--${resume.gender}`}>{genderLetter}</span>
-            <span className="Resume__age">{age} years</span>
+            <span className="Resume__age">{age ? age+' years': '-'}</span>
           </div>
 
           <div className="Resume__basic-info">
             <p className="Resume__created-at">
               <small>Created at: </small>
-              {createdAt}
+              {createdAt ? createdAt : '-'}
             </p>
-            <h2 className="Resume__name">{resume.name}</h2>
+            <h2 className="Resume__name">{resume.name ? resume.name : '-'}</h2>
             <div className="Resume__tags">
-              {tags}
+              {tags && tags}
             </div>
             <p className="Resume__info Resume__info--icon">
               <FA name="map-marker" />
-              {resume.address}
+              {resume.address ? resume.address : '-'}
             </p>
             <p className="Resume__info Resume__info--icon">
               <FA name="envelope" />
-              {resume.email}
+              {resume.email ? resume.email : '-'}
             </p>
             <p className="Resume__info Resume__info--icon">
               <FA name="phone" />
-              {resume.phone}
+              {resume.phone ? resume.phone : '-'}
             </p>
           </div>
         </div>

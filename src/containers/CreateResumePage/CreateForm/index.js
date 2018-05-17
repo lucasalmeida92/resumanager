@@ -2,23 +2,43 @@ import React, { Component } from 'react';
 import './index.scss';
 import FA from 'react-fontawesome';
 import { getBase64 } from '../../../utils/base64';
+import ExperienceFieldset from './ExperienceFieldset';
+import FormationFieldset from './FormationFieldset';
 
 class CreateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formValues: {}
+      formValues: {
+        gender: 'male'
+      },
     };
 
     this._handleInputChange = this._handleInputChange.bind(this);
     this._handlePictureChange = this._handlePictureChange.bind(this);
+    this._addExperienceFieldset = this._addExperienceFieldset.bind(this);
+    this._addFormationFieldset = this._addFormationFieldset.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._changeExperience = this._changeExperience.bind(this);
+    this._changeFormation = this._changeFormation.bind(this);
   }
 
   _handleSubmit(e) {
     e.preventDefault();
     alert('Resume created!');
     console.log('formValues', this.state.formValues);
+    console.log('experiences', this.state.experiences);
+    console.log('formations', this.state.formations);
+
+    let newResume = {...this.state.formValues};
+    newResume.experiences = this.state.experiences ? this.state.experiences.slice() : null;
+    newResume.formations = this.state.formations ? this.state.formations.slice() : null;
+
+    let createdResumes = JSON.parse(localStorage.getItem('createdResumes'));
+    createdResumes
+      ? createdResumes = createdResumes.concat([newResume])
+      : createdResumes = [newResume];
+    localStorage.setItem('createdResumes', JSON.stringify(createdResumes));
   }
 
   _handleInputChange(e) {
@@ -54,6 +74,40 @@ class CreateForm extends Component {
       });
     }).catch(error => {
       console.error(error);
+    });
+  }
+
+  _addExperienceFieldset(e) {
+    e.preventDefault();
+    this.setState({
+      experiences: this.state.experiences
+        ? this.state.experiences.concat([{}])
+        : [{}]
+    });
+  }
+
+  _addFormationFieldset(e) {
+    e.preventDefault();
+    this.setState({
+      formations: this.state.formations
+        ? this.state.formations.concat([{}])
+        : [{}]
+    });
+  }
+
+  _changeExperience(name, value, index) {
+    let newExperiences = this.state.experiences ? this.state.experiences.slice() : [];
+    newExperiences[index][name] = value;
+    this.setState({
+      experiences: newExperiences
+    });
+  }
+
+  _changeFormation(name, value, index) {
+    let newFormations = this.state.formations ? this.state.formations.slice() : [];
+    newFormations[index][name] = value;
+    this.setState({
+      formations: newFormations
     });
   }
 
@@ -132,28 +186,23 @@ class CreateForm extends Component {
 
 
         {/* lista de experiência profissional */}
-        <button className="button button--small"><FA name="plus"/> Add Professional Experience</button>
-        <div className="row CreateForm__sub-form">
-            <input type="text" name="companyName" placeholder="Company Name" className="col col--50" onChange={this._handleInputChange} />
-            <input type="text" name="role" placeholder="Role" className="col col--50" onChange={this._handleInputChange} />
-            <input type="text" name="startDateExp" placeholder="Start Date" className="col col--25" onChange={this._handleInputChange} />
-            <input type="text" name="endDateExp" placeholder="End Date" className="col col--25" onChange={this._handleInputChange} />
+        <div>
+          <button className="button button--small" onClick={this._addExperienceFieldset}><FA name="plus"/> Add Professional Experience</button>
+          {this.state.experiences &&
+              this.state.experiences.map((exp, index) => (
+                <ExperienceFieldset key={index} index={index} onExperienceChange={this._changeExperience} />
+              ))
+          }
         </div>
 
         {/* lista de formações */}
-        <button className="button button--small"><FA name="plus"/> Add Formation</button>
-        <div className="row CreateForm__sub-form">
-            <input type="text" name="institution" placeholder="Institution" className="col col--50" onChange={this._handleInputChange} />
-            <input type="text" name="course" placeholder="Course" className="col col--50" onChange={this._handleInputChange} />
-            <input type="text" name="startDateFor" placeholder="Start Date" className="col col--25" onChange={this._handleInputChange} />
-            <input type="text" name="endDateFor" placeholder="End Date" className="col col--25" onChange={this._handleInputChange} />
-            <label className="col col--25 row CreateForm__isConcludedLabel">
-              Is Concluded:
-              <select className="col col--25" name="isConcluded" required onChange={this._handleInputChange}>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-              </select>
-            </label>
+        <div>
+          <button className="button button--small" onClick={this._addFormationFieldset}><FA name="plus"/> Add Formation</button>
+          {this.state.formations &&
+              this.state.formations.map((form, index) => (
+                <FormationFieldset key={index} index={index} onFormationChange={this._changeFormation} />
+              ))
+          }
         </div>
 
 

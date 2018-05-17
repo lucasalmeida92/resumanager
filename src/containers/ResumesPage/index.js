@@ -21,7 +21,9 @@ class ResumesPage extends Component {
     const resumesUrl = '/resumes.json';
     request(resumesUrl)
       .then(json => {
+        let createdResumes = JSON.parse(localStorage.getItem('createdResumes'));
         let resumes = [...json]
+          .concat(createdResumes)
           .map(resume => {
             resume.score = this._getRandomInt(0,100);
             return resume;
